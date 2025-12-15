@@ -1,0 +1,17 @@
+{
+    "clientName": "Ayaan's Roofing",
+    "phone": "555-0124",
+    "whatsapp": "555-0124",
+    "pricing": {
+        "baseRate": 3.5,
+        "materialMultipliers": {
+            "asphalt": 1.0,
+            "metal": 2.5,
+            "tile": 3.0,
+            "flat": 1.5
+        }
+    },
+    "theme": {
+        "primaryColor": "#28a745"
+    }
+}
