@@ -1,5 +1,5 @@
 // State
-const CLIENT = new URLSearchParams(window.location.search).get('client') || 'henry';
+const CLIENT = getClientId();
 
 let state = {
     size: 2000,
@@ -8,6 +8,33 @@ let state = {
     zipcode: '',
     config: null
 };
+
+/**
+ * Determines the Client ID based on URL or Hostname
+ * Priority:
+ * 1. URL Query Param (?client=mark) - Good for testing
+ * 2. Hostname Subdomain (roofermark.pages.dev -> roofermark)
+ * 3. Default (henry)
+ */
+function getClientId() {
+    // 1. Check URL Param
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('client')) {
+        return params.get('client');
+    }
+
+    // 2. Check Hostname for Cloudflare Pages
+    const hostname = window.location.hostname;
+    if (hostname.includes('.pages.dev')) {
+        // format: projectname.pages.dev
+        // We take the first part as the client ID
+        const parts = hostname.split('.');
+        return parts[0];
+    }
+
+    // 3. Fallback / Localhost
+    return 'henry';
+}
 
 // DOM Elements
 const form = document.getElementById('roofingForm');
@@ -38,7 +65,8 @@ async function init() {
         updateCalculation();
     } catch (error) {
         console.error("Failed to load configuration:", error);
-        alert("Error loading site configuration. Please check console.");
+        // More helpful error message
+        alert(`Error loading site configuration for "${CLIENT}".\nPlease ensure "configs/${CLIENT}.json" exists.`);
     }
 }
 
