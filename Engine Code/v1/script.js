@@ -1,4 +1,6 @@
 // State
+const CLIENT = new URLSearchParams(window.location.search).get('client') || 'henry';
+
 let state = {
     size: 2000,
     type: 'asphalt',
@@ -41,7 +43,7 @@ async function init() {
 }
 
 async function loadConfig() {
-    const response = await fetch(`/configs/${CLIENT}.json`);
+    const response = await fetch(`./configs/${CLIENT}.json`);
     if (!response.ok) throw new Error('Config file not found');
     state.config = await response.json();
 }
