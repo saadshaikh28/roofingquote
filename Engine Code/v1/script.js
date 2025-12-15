@@ -41,7 +41,7 @@ async function init() {
 }
 
 async function loadConfig() {
-    const response = await fetch('config.json');
+    const response = await fetch(`/configs/${CLIENT}.json`);
     if (!response.ok) throw new Error('Config file not found');
     state.config = await response.json();
 }
