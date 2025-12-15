@@ -1,0 +1,17 @@
+{
+    "clientName": "Jason's Roofing",
+    "phone": "555-0125",
+    "whatsapp": "555-0125",
+    "pricing": {
+        "baseRate": 3.5,
+        "materialMultipliers": {
+            "asphalt": 1.0,
+            "metal": 2.5,
+            "tile": 3.0,
+            "flat": 1.5
+        }
+    },
+    "theme": {
+        "primaryColor": "#dc3545"
+    }
+}
